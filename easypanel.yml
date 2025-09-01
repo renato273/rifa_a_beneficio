@@ -1,0 +1,26 @@
+name: rifa-benefica
+services:
+  - name: web
+    type: app
+    source:
+      type: github
+      repo: tu-usuario/rifa-benefica
+      branch: main
+    build:
+      type: dockerfile
+      dockerfile: Dockerfile
+    deploy:
+      replicas: 1
+      strategy: rolling-update
+    domains:
+      - host: tu-dominio.com
+    env:
+      - name: NODE_ENV
+        value: production
+      - name: PORT
+        value: "3000"
+    resources:
+      reservations:
+        memory: 256M
+      limits:
+        memory: 512M

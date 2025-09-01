@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Benéfica - Por un Corazón Sano</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        main {
+            margin-top: 120px;
+            padding: 2rem 0;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-heart {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin: 1rem 0;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .prize-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .prize-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: #e74c3c;
+        }
+
+        .prize-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .prize-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .prize-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: end;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover {
+            transform: scale(1.02);
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .slide-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-description {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #333;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .slider-nav:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-prev {
+            left: 20px;
+        }
+
+        .slider-next {
+            right: 20px;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #e74c3c;
+            transform: scale(1.2);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(231, 76, 60, 0.3);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10%,
+            90% {
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+            }
+        }
+
+        /* Modal para imagen completa */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1000px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-info {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #e74c3c;
+        }
+
+        .modal-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(231, 76, 60, 0.8);
+            transform: scale(1.1);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-nav:hover {
+            background: rgba(231, 76, 60, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .prizes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slide {
+                height: 300px;
+            }
+
+            .modal-content {
+                padding: 10px;
+            }
+
+            .modal-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .close {
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+                top: 10px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo">❤️ Rifa Benéfica</div>
+                    <div class="tagline">Ayudemos juntos a salvar una vida</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <div class="hero-heart">❤️</div>
+                <h1>Por un Corazón Sano</h1>
+                <p>
+                    Estamos organizando esta rifa benéfica para ayudar a un niño que necesita una operación urgente del
+                    corazón.
+                    Cada boleto que compres no solo te da la oportunidad de ganar increíbles premios, sino que también
+                    contribuyes
+                    directamente a salvar la vida de este pequeño. Tu generosidad puede hacer la diferencia entre la
+                    vida y la muerte.
+                </p>
+                <p>
+                    <strong>Juntos podemos darle una segunda oportunidad a este niño para que pueda correr, jugar y
+                        sonreír como cualquier otro.</strong>
+                </p>
+                <a href="#premios" class="cta-button">Ver Premios</a>
+            </section>
+
+            <section class="section" id="premios">
+                <h2 class="section-title">🎁 Premios Increíbles</h2>
+                <div class="prizes-grid">
+                    <div class="prize-card">
+                        <div class="prize-icon">🏆</div>
+                        <div class="prize-title">1er Premio</div>
+                        <div class="prize-description">Televisor Smart TV 55" 4K Ultra HD con sistema Android TV
+                            integrado</div>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-icon">🥈</div>
+                        <div class="prize-title">2do Premio</div>
+                        <div class="prize-description">Smartphone último modelo con 128GB de almacenamiento y cámara
+                            profesional</div>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-icon">🥉</div>
+                        <div class="prize-title">3er Premio</div>
+                        <div class="prize-description">Tablet de 10" con funda y accesorios completos para trabajo y
+                            entretenimiento</div>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-icon">🎧</div>
+                        <div class="prize-title">4to Premio</div>
+                        <div class="prize-description">Auriculares inalámbricos premium con cancelación de ruido</div>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-icon">💳</div>
+                        <div class="prize-title">5to Premio</div>
+                        <div class="prize-description">Tarjeta de regalo de $200 para tienda departamental</div>
+                    </div>
+                    <div class="prize-card">
+                        <div class="prize-icon">🍽️</div>
+                        <div class="prize-title">6to Premio</div>
+                        <div class="prize-description">Cena romántica para dos personas en restaurante de lujo</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">📸 Galería de Premios</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                    <em>Haz click en cualquier imagen para verla en tamaño completo</em>
+                </p>
+                <div class="slider-container">
+                    <div class="slider" id="slider">
+                        <!-- Las imágenes se cargarán dinámicamente desde JavaScript -->
+                    </div>
+                    <button class="slider-nav slider-prev" onclick="prevSlide()">‹</button>
+                    <button class="slider-nav slider-next" onclick="nextSlide()">›</button>
+                </div>
+                <div class="slider-dots" id="sliderDots"></div>
+            </section>
+
+            <!-- Modal para imagen completa -->
+            <div id="imageModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <button class="modal-nav modal-prev" onclick="prevModalImage()">‹</button>
+                    <button class="modal-nav modal-next" onclick="nextModalImage()">›</button>
+                    <img id="modalImage" class="modal-image" src="" alt="">
+                    <div class="modal-info">
+                        <div id="modalTitle" class="modal-title"></div>
+                        <div id="modalDescription" class="modal-description"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3>📞 Información de Contacto</h3>
+                <p><strong>Teléfono:</strong> +1 (555) 123-4567</p>
+                <p><strong>Email:</strong> rifa.benefica@ejemplo.com</p>
+                <p><strong>Precio del boleto:</strong> 5.000 GS</p>
+                <p><strong>Fecha del sorteo:</strong> 10 de Octubre, 2025</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Lista de imágenes - puedes agregar más imágenes aquí
+        const images = [{
+                src: '/images/1.jpeg',
+                title: 'Parlante Radioshack',
+                description: 'Bluetooth'
+            },
+            {
+                src: '/images/2.jpeg',
+                title: 'Set para Condimentos',
+                description: '4 Piezas'
+            },
+            {
+                src: '/images/3.jpeg',
+                title: 'Tablet Profesional',
+                description: 'Perfecta para trabajo y entretenimiento'
+            },
+            {
+                src: '/images/4.jpg',
+                title: 'Hopie',
+                description: '500 ml'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                title: 'Tarjeta de Regalo',
+                description: 'Para que elijas lo que más te guste'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                title: 'Cena Romántica',
+                description: 'Una experiencia gastronómica inolvidable'
+            }
+        ];
+
+        let currentSlide = 0;
+        let currentModalImage = 0;
+
+        // Inicializar el slider
+        function initSlider() {
+            const slider = document.getElementById('slider');
+            const dotsContainer = document.getElementById('sliderDots');
+
+            // Crear slides
+            images.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.style.backgroundImage = `url(${image.src})`;
+
+                // Agregar evento click para abrir modal
+                slide.addEventListener('click', () => openModal(index));
+
+                slide.innerHTML = `
+                    <div class="slide-content">
+                        <div class="slide-title">${image.title}</div>
+                        <div class="slide-description">${image.description}</div>
+                    </div>
+                `;
+
+                slider.appendChild(slide);
+
+                // Crear dots
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateSlider() {
+            const slider = document.getElementById('slider');
+            const dots = document.querySelectorAll('.dot');
+
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % images.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + images.length) % images.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // Auto-play slider
+        function startAutoPlay() {
+            setInterval(nextSlide, 5000);
+        }
+
+        // Crear corazones flotantes
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = '0s';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heartsContainer.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 7000);
+            }, 2000);
+        }
+
+        // Smooth scroll para el botón CTA
+        document.querySelector('.cta-button').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector('#premios').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Funciones del modal
+        function openModal(imageIndex) {
+            currentModalImage = imageIndex;
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+
+            modal.style.display = 'block';
+            modalImage.src = images[imageIndex].src;
+            modalTitle.textContent = images[imageIndex].title;
+            modalDescription.textContent = images[imageIndex].description;
+
+            // Prevenir scroll del body cuando el modal está abierto
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextModalImage() {
+            currentModalImage = (currentModalImage + 1) % images.length;
+            updateModalImage();
+        }
+
+        function prevModalImage() {
+            currentModalImage = (currentModalImage - 1 + images.length) % images.length;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+
+            modalImage.src = images[currentModalImage].src;
+            modalTitle.textContent = images[currentModalImage].title;
+            modalDescription.textContent = images[currentModalImage].description;
+        }
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+            if (e.key === 'ArrowLeft') {
+                prevModalImage();
+            }
+            if (e.key === 'ArrowRight') {
+                nextModalImage();
+            }
+        });
+
+        // Cerrar modal al hacer click fuera de la imagen
+        document.getElementById('imageModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Inicializar todo cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function () {
+            initSlider();
+            startAutoPlay();
+            createFloatingHearts();
+        });
+    </script>
+</body>
+
+</html>
