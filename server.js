@@ -3,7 +3,7 @@ const path = require('path');
 const compression = require('compression');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3010;
 
 // Configuración para producción
 if (process.env.NODE_ENV === 'production') {
