@@ -21,7 +21,7 @@ USER nextjs
 COPY --chown=nextjs:nodejs package*.json ./
 
 # Instalar dependencias
-RUN npm ci --only=production && npm cache clean --force
+RUN npm install --production && npm cache clean --force
 
 # Copiar el resto de archivos
 COPY --chown=nextjs:nodejs . .
