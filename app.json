@@ -1,0 +1,27 @@
+{
+  "name": "rifa-benefica",
+  "description": "Sitio web para rifa benéfica - Por un Corazón Sano",
+  "repository": "https://github.com/TU-USUARIO/rifa-benefica",
+  "keywords": ["nodejs", "express", "rifa", "benefica"],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "PORT": {
+      "description": "Port to run the app",
+      "value": "3000"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
