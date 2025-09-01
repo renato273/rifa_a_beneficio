@@ -1,5 +1,5 @@
 # Usar Node.js LTS Alpine para menor tamaño
-FROM mcr.microsoft.com/oss/library/node:18-alpine
+FROM public.ecr.aws/docker/library/node:20-alpine
 
 # Instalar dumb-init para manejo correcto de señales
 RUN apk add --no-cache dumb-init
