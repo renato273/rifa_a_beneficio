@@ -37,11 +37,18 @@
             z-index: 1000;
         }
 
-        .header-content {
+        .header-flex {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
             flex-wrap: wrap;
+        }
+
+        .header-logo-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .logo {
@@ -56,6 +63,25 @@
             color: #666;
             font-size: 1.1rem;
             text-align: center;
+        }
+
+        .header-photo-block {
+            min-width: 120px;
+            max-width: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .milton-photo {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #e74c3c;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.15);
+            background: #fff;
+            cursor: pointer;
         }
 
         main {
@@ -466,6 +492,106 @@
             right: 20px;
         }
 
+        /* Cambios para vista de lista en premios e imágenes */
+        .prizes-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .prize-list-item {
+            display: flex;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: box-shadow 0.3s;
+            border: 3px solid transparent;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .prize-list-item:hover {
+            border-color: #e74c3c;
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.08);
+        }
+
+        .prize-icon {
+            font-size: 2.2rem;
+            margin-right: 1.2rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .prize-info {
+            flex: 1;
+        }
+
+        .prize-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.2rem;
+        }
+
+        .prize-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Galería de imágenes en lista */
+        .slider-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .slider-list-item {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+        }
+
+        .slider-list-item:hover {
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.12);
+        }
+
+        .slider-list-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .slider-list-content {
+            padding: 1.2rem;
+            flex: 1;
+        }
+
+        .slide-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            color: #2c3e50;
+        }
+
+        .slide-description {
+            font-size: 0.98rem;
+            color: #555;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -504,6 +630,18 @@
                 top: 10px;
                 right: 15px;
             }
+
+            .prize-list-item,
+            .slider-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .slider-list-img {
+                width: 100%;
+                height: 180px;
+                border-radius: 15px 15px 0 0;
+            }
         }
     </style>
 </head>
@@ -513,10 +651,16 @@
 
     <header>
         <div class="container">
-            <div class="header-content">
-                <div>
+            <div class="header-flex">
+                <div class="header-logo-block">
                     <div class="logo">❤️ Rifa Benéfica</div>
-                    <div class="tagline">Ayudemos juntos a salvar una vida</div>
+                    <div class="logo">Juntos por Milton Manuel</div>
+                </div>
+                <div class="header-photo-block">
+                    <!-- Aquí puedes agregar la foto de tu hijo -->
+                    <img src="/images/milton.jpeg" alt="Milton Manuel" class="milton-photo" id="miltonPhoto"
+                        style="cursor:pointer;">
+                    <!-- Quita style="display:none;" cuando tengas la foto -->
                 </div>
             </div>
         </div>
@@ -542,49 +686,176 @@
                 <a href="#premios" class="cta-button">Ver Premios</a>
             </section>
 
+
+            <div class="contact-info">
+                <h3>📞 Información de Contacto</h3>
+                <p><strong>Teléfono:</strong> +595 983 880849</p>
+                <p><strong>Email:</strong> rodolfo9olmedo@gmail.com</p>
+                <p><strong>Precio del boleto:</strong> 10.000 GS</p>
+                <p><strong>Fecha del sorteo:</strong> 28 de Septiembre, 2025</p>
+                <h3>Para donaciones</h3>
+                <p>Si deseas hacer una donación directa, puedes hacerlo a través de los siguientes medios:</p>
+                <ul>
+                    <p><strong>Banco:</strong> Basa</p>
+                    <p><strong>Alias tipo:</strong> Telefono</p>
+                    <p><strong>Numero:</strong> +595 983 872542</p>
+                </ul>
+            </div>
+            <!-- Premios en formato de lista -->
             <section class="section" id="premios">
                 <h2 class="section-title">🎁 Premios Increíbles</h2>
-                <div class="prizes-grid">
-                    <div class="prize-card">
-                        <div class="prize-icon">🏆</div>
-                        <div class="prize-title">1er Premio</div>
-                        <div class="prize-description">Televisor Smart TV 55" 4K Ultra HD con sistema Android TV
-                            integrado</div>
-                    </div>
-                    <div class="prize-card">
-                        <div class="prize-icon">🥈</div>
-                        <div class="prize-title">2do Premio</div>
-                        <div class="prize-description">Smartphone último modelo con 128GB de almacenamiento y cámara
-                            profesional</div>
-                    </div>
-                    <div class="prize-card">
-                        <div class="prize-icon">🥉</div>
-                        <div class="prize-title">3er Premio</div>
-                        <div class="prize-description">Tablet de 10" con funda y accesorios completos para trabajo y
-                            entretenimiento</div>
-                    </div>
-                    <div class="prize-card">
-                        <div class="prize-icon">🎧</div>
-                        <div class="prize-title">4to Premio</div>
-                        <div class="prize-description">Auriculares inalámbricos premium con cancelación de ruido</div>
-                    </div>
-                    <div class="prize-card">
-                        <div class="prize-icon">💳</div>
-                        <div class="prize-title">5to Premio</div>
-                        <div class="prize-description">Tarjeta de regalo de $200 para tienda departamental</div>
-                    </div>
-                    <div class="prize-card">
-                        <div class="prize-icon">🍽️</div>
-                        <div class="prize-title">6to Premio</div>
-                        <div class="prize-description">Cena romántica para dos personas en restaurante de lujo</div>
-                    </div>
-                </div>
+                <ul class="prizes-list">
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🏆</span>
+                        <div class="prize-info">
+                            <div class="prize-title">1er Premio</div>
+                            <div class="prize-description">💰💰500.000 GS en efectivo💰💰</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🥈</span>
+                        <div class="prize-info">
+                            <div class="prize-title">2do Premio</div>
+                            <div class="prize-description">Vale de consumo de 150.000 Gs (LodePatto Comedor) 🍽️</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🥉</span>
+                        <div class="prize-info">
+                            <div class="prize-title">3er Premio</div>
+                            <div class="prize-description">🔊🔊Speaker bluetooth Radioshack 1CH🔊🔊</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🧺</span>
+                        <div class="prize-info">
+                            <div class="prize-title">4to Premio</div>
+                            <div class="prize-description">Canasta de Víveres (Despensa San Cayetano) 🧺</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">⚡</span>
+                        <div class="prize-info">
+                            <div class="prize-title">5to Premio</div>
+                            <div class="prize-description">Jarra eléctrica ⚡</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">☕</span>
+                        <div class="prize-info">
+                            <div class="prize-title">6to Premio</div>
+                            <div class="prize-description">Cafetera personal ☕</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🛏️</span>
+                        <div class="prize-info">
+                            <div class="prize-title">7mo Premio</div>
+                            <div class="prize-description">Juego de sábana 🛏️</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🧶</span>
+                        <div class="prize-info">
+                            <div class="prize-title">8vo Premio</div>
+                            <div class="prize-description">Juego de crochet 🧶</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🍶</span>
+                        <div class="prize-info">
+                            <div class="prize-title">9no Premio</div>
+                            <div class="prize-description">Set de frascos de vidrio (4PCS Glass Cruet Set) 🍶</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🛍️</span>
+                        <div class="prize-info">
+                            <div class="prize-title">10mo Premio</div>
+                            <div class="prize-description">Vale de compras de 100.000 Gs (Despensa Mi Ángel) 🛍️</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🍕</span>
+                        <div class="prize-info">
+                            <div class="prize-title">11vo Premio</div>
+                            <div class="prize-description">Vale de consumo de 50.000 Gs (Pizzería BEKO) 🍕</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🥐</span>
+                        <div class="prize-info">
+                            <div class="prize-title">12vo Premio</div>
+                            <div class="prize-description">Canasta de desayuno (Algo Dulce Postres) 🥐</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🍔</span>
+                        <div class="prize-info">
+                            <div class="prize-title">13vo Premio</div>
+                            <div class="prize-description">Vale de consumo (3M Burger) 🍔</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🍰</span>
+                        <div class="prize-info">
+                            <div class="prize-title">14vo Premio</div>
+                            <div class="prize-description">Torta casera tradicional 1,5 kg 🍰</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🥛</span>
+                        <div class="prize-info">
+                            <div class="prize-title">15vo Premio</div>
+                            <div class="prize-description">Juego de jarra y vasos de vidrio 🥛</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">👖</span>
+                        <div class="prize-info">
+                            <div class="prize-title">16vo Premio</div>
+                            <div class="prize-description">Calza deportiva femenina 👖</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">💅</span>
+                        <div class="prize-info">
+                            <div class="prize-title">17vo Premio</div>
+                            <div class="prize-description">Vale de manicura (Softgel + Semipermanente) 💅</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">💈</span>
+                        <div class="prize-info">
+                            <div class="prize-title">18vo Premio</div>
+                            <div class="prize-description">Corte masculino (Manu Barber) 💈</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🎀</span>
+                        <div class="prize-info">
+                            <div class="prize-title">19vo Premio</div>
+                            <div class="prize-description">Moños personalizados 🎀</div>
+                        </div>
+                    </li>
+                    <li class="prize-list-item">
+                        <span class="prize-icon">🎁</span>
+                        <div class="prize-info">
+                            <div class="prize-title">Premios Adicionale</div>
+                            <div class="prize-description">Premios sorpresas 🎁</div>
+                        </div>
+                    </li>
+                    
+                </ul>
             </section>
 
             <section class="section">
                 <h2 class="section-title">📸 Galería de Premios</h2>
                 <p style="text-align: center; color: #666; margin-bottom: 2rem;">
                     <em>Haz click en cualquier imagen para verla en tamaño completo</em>
+                </p>
+                <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                    <em>Algunas imágenes son de referencia!!</em>
                 </p>
                 <div class="slider-container">
                     <div class="slider" id="slider">
@@ -609,20 +880,18 @@
                     </div>
                 </div>
             </div>
-
-            <div class="contact-info">
-                <h3>📞 Información de Contacto</h3>
-                <p><strong>Teléfono:</strong> +1 (555) 123-4567</p>
-                <p><strong>Email:</strong> rifa.benefica@ejemplo.com</p>
-                <p><strong>Precio del boleto:</strong> 5.000 GS</p>
-                <p><strong>Fecha del sorteo:</strong> 10 de Octubre, 2025</p>
-            </div>
         </div>
     </main>
 
     <script>
         // Lista de imágenes - puedes agregar más imágenes aquí
-        const images = [{
+        const images = [
+         {
+                src: '/images/5.jpg',
+                title: '500.000 Gs',
+                description: 'Efectivo'
+            },    
+        {
                 src: '/images/1.jpeg',
                 title: 'Parlante Radioshack',
                 description: 'Bluetooth'
@@ -634,24 +903,44 @@
             },
             {
                 src: '/images/3.jpeg',
-                title: 'Tablet Profesional',
-                description: 'Perfecta para trabajo y entretenimiento'
+                title: 'Canasta de Víveres',
+                description: 'Despensa San Cayetano'
             },
             {
                 src: '/images/4.jpg',
-                title: 'Hopie',
-                description: '500 ml'
+                title: 'Jarra Eléctrica',
+                description: 'Capacidad 1.7L'
             },
             {
-                src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                title: 'Tarjeta de Regalo',
-                description: 'Para que elijas lo que más te guste'
+                src: '/images/6.jpg',
+                title: 'Juego de Sábanas',
+                description: '2 Plazas'
             },
+           
             {
-                src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                title: 'Cena Romántica',
+                src: '/images/7.jpg',
+                title: 'Vale de Consumisión',
                 description: 'Una experiencia gastronómica inolvidable'
-            }
+            },
+            {
+                src: '/images/8.jpg',
+                title: 'Cafetera personal',
+                description: 'Disfruta de un café de calidad en casa'
+            },
+            {
+                src: '/images/16.jpg',
+                title: 'Calza Femenina',
+                description: 'Imagen de referencia'
+            },
+            {
+                src: '/images/17.jpg',
+                title: 'Manicura',
+                description: 'Imagen de referencia'
+            },{
+                src: '/images/18.jpg',
+                title: 'Manicura',
+                description: 'Imagen de referencia'
+            },
         ];
 
         let currentSlide = 0;
@@ -661,6 +950,10 @@
         function initSlider() {
             const slider = document.getElementById('slider');
             const dotsContainer = document.getElementById('sliderDots');
+
+            // Limpiar contenido previo
+            slider.innerHTML = '';
+            dotsContainer.innerHTML = '';
 
             // Crear slides
             images.forEach((image, index) => {
@@ -686,6 +979,9 @@
                 dot.addEventListener('click', () => goToSlide(index));
                 dotsContainer.appendChild(dot);
             });
+
+            // Asegúrate de actualizar el slider al iniciar
+            updateSlider();
         }
 
         function updateSlider() {
@@ -814,6 +1110,25 @@
             initSlider();
             startAutoPlay();
             createFloatingHearts();
+
+            // Evento para la foto de Milton
+            const miltonPhoto = document.getElementById('miltonPhoto');
+            if (miltonPhoto) {
+                miltonPhoto.addEventListener('click', function () {
+                    // Mostrar la foto de Milton en el modal
+                    const modal = document.getElementById('imageModal');
+                    const modalImage = document.getElementById('modalImage');
+                    const modalTitle = document.getElementById('modalTitle');
+                    const modalDescription = document.getElementById('modalDescription');
+
+                    modal.style.display = 'block';
+                    modalImage.src = '/images/milton.jpeg';
+                    modalTitle.textContent = 'Milton Manuel';
+                    modalDescription.textContent = '¡Gracias por tu apoyo!';
+
+                    document.body.style.overflow = 'hidden';
+                });
+            }
         });
     </script>
 </body>
